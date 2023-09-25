@@ -8,6 +8,7 @@ import (
 // exported type from todo package
 type Item struct {
 	Title string
+    Priority int
 }
 
 func SaveItems(filename string, list []Item) error {
@@ -34,4 +35,15 @@ func ReadItems(filename string) ([]Item, error) {
 		return []Item{}, err
 	}
 	return list, nil
+}
+
+func (i *Item) SetPriority(p int) {
+    switch p {
+    case 1:
+    i.Priority = 1
+    case 3:
+    i.Priority = 3
+    default:
+    i.Priority = 2
+}
 }

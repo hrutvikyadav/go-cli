@@ -40,6 +40,7 @@ func addRun(cmd *cobra.Command, args []string) {
 
 }
 
+var priority int
 func init() {
 	rootCmd.AddCommand(addCmd)
 
@@ -52,4 +53,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// addCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+    addCmd.Flags().IntVarP(&priority, "priority", "p", 2, "Priority for task: 1 High, 2 Medium, 3 Low")
 }
