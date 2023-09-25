@@ -142,6 +142,37 @@ td edit 1 2 3 4 -pLOW
 ## Start Coding
 
 ```sh
+mkdir -p ./project-repo && cd ./project-repo
+go mod init github.com/hrutvikyadav/go-cli
+# go get -u github.com/spf13/cobra@latest
+go install github.com/spf13/cobra-cli@latest
 # inside a go module, run
 cobra-cli init --author "Hrutvik Yadav hrutvikyadav@gmail.com"
+
+go run
+# OR
+go build
+./go-cli
+```
+
+```sh
+# Add new command
+cobra-cli add add
+tree .
+.
+├── LICENSE
+├── README.md
+├── cmd
+│   ├── add.go
+│   └── root.go
+├── go-cli
+├── go.mod
+├── go.sum
+└── main.go
+
+1 directory, 8 files
+
+go build 
+./go-cli add
+add called
 ```
