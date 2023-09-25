@@ -175,4 +175,7 @@ tree .
 go build 
 ./go-cli add
 add called
+
+# Another command
+cobra-cli add list
 ```

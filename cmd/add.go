@@ -1,15 +1,15 @@
 /*
 Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/spf13/cobra"
-    // import type from todo package
-    "github.com/hrutvikyadav/go-cli/todo"
+	// import type from todo package
+	"github.com/hrutvikyadav/go-cli/todo"
 )
 
 // addCmd represents the add command
@@ -22,18 +22,21 @@ You can specify title, priority, due date and project`,
 }
 
 func addRun(cmd *cobra.Command, args []string) {
-    // initialize list with empty todoitem
-    list := []todo.Item{}
-    for _, av := range args {
-        // add to list
-        list = append(list, todo.Item{Title: av})
-        fmt.Println("Added", av)
-    }
-    //fmt.Println(list).todods.json
-    err := todo.SaveItems("/home/hrutvik_/.todods.json", list)
-    if err != nil {
-        fmt.Errorf("%v", err)
-    }
+	// initialize list with empty todoitem
+	list, rerr := todo.ReadItems(dataFile)
+	if rerr != nil {
+		log.Printf("%v", rerr)
+	}
+	for _, av := range args {
+		// add to list
+		list = append(list, todo.Item{Title: av})
+		fmt.Println("Added", av)
+	}
+	//fmt.Println(list).todods.json
+	err := todo.SaveItems(dataFile, list)
+	if err != nil {
+		fmt.Errorf("%v", err)
+	}
 
 }
 
